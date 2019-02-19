@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--<img class="img-responsive img1" src="Images/0557b965a5a6a8b.jpg" alt="Backgroundimage">-->
+    </header>
+    <div class="container-fluid text-center table2">
+        <h1>Online Shopping Store </h1>
+        <form name="myForm" class="form-inline well">
+            <label for="Item">Item:</label>
+            <input type="text" class="form-control Item1" id="Item" placeholder="Enter Item" name="Item" required>
+            <label for="qty">Qty:</label>
+            <input type="number" class="form-control Qty1" id="qty" placeholder="Qty" name="qty" required>
+            <button type="button" class="btn btn-success" id="button1">Add Item</button>
+        </form>
+    </div>
+
+    <div class="table-responsive table1">
+        <h3>List:</h3>
+        <table class="table .table-dark table-hover  table-bordered  ">
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Item</th>
+                    <th style="width: 30%;">Qty</th>
+                    <th style="width: 20%;">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="content"><span>Tomato</span></td>
+                    <td class="content"><span>11</span></td>
+                    <td><button type="button" class="btn btn-primary">Remove</button></td>
+                </tr>
+                <tr>
+                    <td class="content"><span>Potato</span></td>
+                    <td class="content"><span>10</span></td>
+                    <td><button type="button" class="btn btn-primary">Remove</button></td>
+                </tr>
+                <tr>
+                    <td class="content"><span>Squash</span></td>
+                    <td class="content"><span>5</span></td>
+                    <td><button type="button" class="btn btn-primary">Remove</button> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["Item"].value;
+            if (x == "") {
+                alert("Item must be filled out");
+                return false;
+            }
+
+            var y = document.forms["myForm"]["qty"].value;
+            if (y == "") {
+                alert("Qty must be filled out");
+                return false;
+            }
+        }
+        $("#button1").click(function() {
+            validateForm()
+            var Item1 = $(".Item1").val();
+            var Item2 = $(".Qty1").val();
+
+            if ((Item1 !== "") && ($.trim(Item1) !== "") && (Item2 !== "") && ($.trim(Item2) !== "")) {
+                console.log(Item1);
+                console.log(Item2);
+                var content1 = "<td class=\"content\"><span>" + Item1 + "</span></td>";
+                var content2 = "<td class=\"content\"><span>" + Item2 + "</span></td>";
+                var content3 = "<td><button type=\"button\" class=\"btn btn-primary\">Remove</button></td>";
+
+                $("tbody").append("<tr>" + content1 + content2 + content3 + "</tr>");
+
+                $(".Item1").val("");
+                $(".Qty1").val("");
+            }
+
+
+        });
+
+        $("tbody").on("click", ".btn-primary", function(event) {
+            var check1 = confirm('are you sure you want to delete this?');
+            if (check1 == true) {
+                $(this).closest("tr").remove();
+            } else {
+                return false;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
